@@ -1,6 +1,7 @@
 package com.ndinhchien.langPractice.domain.question.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -50,11 +51,11 @@ public class QuestionController {
 
     @Operation(summary = "Add questions to pack")
     @PostMapping("/packId/{packId}")
-    BaseResponse<List<Question>> addQuestions(
+    BaseResponse<Map<String, Object>> addQuestions(
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             @PathVariable @Min(0) Long packId,
             @RequestBody List<@Valid AddQuestionDto> requestDto) {
-        List<Question> result = questionService.addQuestions(userDetails.getUser(), packId, requestDto);
+        Map<String, Object> result = questionService.addQuestionsToPack(userDetails.getUser(), packId, requestDto);
         return BaseResponse.success("Added", result);
     }
 
@@ -64,17 +65,18 @@ public class QuestionController {
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             @RequestParam @Min(0) Long questionId,
             @RequestBody @Valid UpdateQuestionDto requestDto) {
-        Question updated = questionService.updateQuestion(userDetails.getUser(), questionId, requestDto);
+        Question updated = questionService.updateQuestion(userDetails.getUser(), questionId, requestDto, null);
         return BaseResponse.success("Update Question", updated);
     }
 
-    @Operation(summary = "Update questions")
-    @PutMapping("/many")
-    BaseResponse<List<Question>> updateQuestions(
+    @Operation(summary = "Update pack questions")
+    @PutMapping("/packId/{packId}")
+    BaseResponse<Map<String, Object>> updatePackQuestions(
             @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @PathVariable @Min(0) Long packId,
             @RequestBody List<@Valid UpdateQuestionDto> requestDto) {
-        List<Question> updated = questionService.updateQuestions(userDetails.getUser(), requestDto);
-        return BaseResponse.success("Update Questions", updated);
+        Map<String, Object> result = questionService.updatePackQuestions(userDetails.getUser(), packId, requestDto);
+        return BaseResponse.success("Update Pack Questions", result);
     }
 
     @Operation(summary = "Add or Remove Favourite Question")

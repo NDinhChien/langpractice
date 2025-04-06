@@ -20,4 +20,5 @@ public class ErrorMessage {
 
     public static final String QUESTION_NOT_FOUND = "Question does not exist.";
     public static final String QUESTION_OWNER_ONLY = "You do not own this question";
+    public static final String INVALID_PAYLOAD_UPDATE_QUESTION_LIST = "Can not update questions of different packs at once";
 }

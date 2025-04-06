@@ -28,7 +28,7 @@ This project is my attempt to build a scalable and efficient server using **Java
 - **Packs**<br /><br />
   ![pack apis](./images/api/pack.png)<br />
 - **Questions**<br /><br />
-  ![question apis](./images/api/question.png)<br />
+  ![question apis](./images/api/question2.png)<br />
 - **Histories**<br /><br />
   ![history apis](./images/api/history.png)<br />
 - **Users**<br /><br />
@@ -53,7 +53,7 @@ The frontend app is built with **Next.js**, with efforts to offer offline experi
 - **Play & History**<br /><br />
   ![play](./images/app/practice.png)<br />
 
-- **.etc**<br />
+- **...**<br />
 
 ---
 
